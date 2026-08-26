@@ -2,7 +2,7 @@
 
 (Norms Expressed As a Tool for Operating (S)ystems)
 
-### Latest NEATO Spec Version: v0 Revision 1 of July 12, 2026
+### Latest NEATO Spec Version: v0 Revision 2 of August 26, 2026
 
 NEATO is a standard that defines APIs and standard conventions for NEET Computers operating systems and their method
 of booting.
@@ -35,4 +35,4 @@ NEATO definitions about the NEATO compliant boot process, are placed in the `boo
 Common formats that are shared between NEATO program API definitions and the NEATO boot definitions are defined in
 the `common` folder.
 
-NEATO specifications for networking protocols are defined in the `network` folder
+NEATO specifications for networking protocols are defined in the `network` folder.
