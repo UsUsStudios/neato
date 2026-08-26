@@ -9,7 +9,11 @@ The module first defines a format that all protocols should follow for compatibi
 for certain uses. In the future, a NEATO API module should be specified to add an abstraction layer for the basic
 `io.broadcastLocal(arguments)` calls, and a higher abstraction layer for all the NEATO specified protocols.
 
+In all protocol specifications, the term "broadcasting function" refers to any `io.broadcastLocal(arguments)`-equivalent
+function, including `broadcastLocal` itself. This includes any function that sends a series of arguments to all computers
+in a certain network, including the global network.
+
 ### Protocol specifications:
 
-- [Common protocol format(common.md)](common.md) - The format that all NEETComputers networking protocols should
-  adhere to for compatibility purposes.
+- [NEET Datagram Protocol (ndp.md)](ndp.md) - The transport-layer protocol used as the first layer for any other
+  application-level protocol.
