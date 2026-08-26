@@ -37,13 +37,17 @@ return {
 
 ### Bootlist
 
-NEATO compatible bootloaders must support ALL fields defined, as well as supporting multiple operating systems defined in `boot.lua`.
+NEATO compatible bootloaders must support ALL fields defined, as well as supporting multiple operating systems defined
+in `boot.lua`.
 
 The `OS Args` field must take in either a string, e.g. "EXAMPLEARG=1" or a table (as shown).
 
-Arguments must be passed into the boot path as provided, so a table must pass into the boot path as ("-v", "-f") for example, or as a raw string.
+Arguments must be passed into the boot path as provided, so a table must pass into the boot path as ("-v", "-f") for
+example, or as a raw string.
 
-The `OS Environment Variable Definition` field must create environment variables for the boot path, as provided. This can be done different ways, but the boot path MUST be able to see defined varaibles in _ENV. So, for the provided example, `0:bios:/boot.lua` would be able to see `_ENV.EXAMPLEVAR` as `0`, and `VAR2` as "Hi".
+The `OS Environment Variable Definition` field must create environment variables for the boot path, as provided. This
+can be done different ways, but the boot path MUST be able to see defined varaibles in \_ENV. So, for the provided example,
+`0:bios:/boot.lua` would be able to see `_ENV.EXAMPLEVAR` as `0`, and `VAR2` as "Hi".
 
 ---
 
@@ -51,6 +55,9 @@ The `OS Environment Variable Definition` field must create environment variables
 
 NEATO compatible bootloaders must respect the Config field.
 
-`Config.DefaultEntry` is 1-indexed as how Lua tables are indexed. `Config.DefaultEntry` controls which boot entry is first shown and selected initially when the bootloader is opened.
+`Config.DefaultEntry` is 1-indexed as how Lua tables are indexed. `Config.DefaultEntry` controls which boot entry is first
+shown and selected initially when the bootloader is opened.
 
-`Config.Autoboot` is 1-indexed as how Lua tables are indexed. `Config.Autoboot` if set to `"none"` or any value other than a valid index into `Bootlist` disables autoboot. If set to an index of `Bootlist` then automatically boots into it. NEATO does not define how long it must take, if any time, for `Config.Autoboot` to complete or confirm.
+`Config.Autoboot` is 1-indexed as how Lua tables are indexed. `Config.Autoboot` if set to `"none"` or any value other
+than a valid index into `Bootlist` disables autoboot. If set to an index of `Bootlist` then automatically boots into
+it. NEATO does not define how long it must take, if any time, for `Config.Autoboot` to complete or confirm.
