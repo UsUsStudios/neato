@@ -1,4 +1,4 @@
-# NEATO `NEET Datagram Protocol` Specification
+# NEATO `Direct Payload Protocol` Specification
 
 Written by UsUsStudios
 
@@ -6,25 +6,25 @@ Revision 0 of August 26, 2026
 
 ---
 
-This specification defines a transport-layer communication protocol, called NEET Datagram Protocol, or NDP, as the
+This specification defines a transport-layer communication protocol, called Direct Payload Protocol, or DPP, as the
 first layer for any application-layer protocol. It is connectionless protocol which in real networking would be
 refered to as unreliable due to its lack of protection from data loss, but because NEETComputers does not have
 any data loss, it does guarantee data integrity. It is comparable to the real-life UDP protocol.
 
-An NDP message should be sent as the following arguments passed to a broadcasting function:
+A DPP message should be sent as the following arguments passed to a broadcasting function:
 
-`("ndp", target_hostname, target_port, source_hostname, source_port, payload)`
+`("dpp", target_hostname, target_port, source_hostname, source_port, payload)`
 
-### "ndp":
+### "dpp":
 
-The first argument must be a string consisting of exactly `ndp`, for the receiving program to confirm that this is
-an NDP message. (Currently this is not useful, as NDP is the only transport-layer protocol, but in the future other
+The first argument must be a string consisting of exactly `dpp`, for the receiving program to confirm that this is
+an DPP message. (Currently this is not useful, as DPP is the only transport-layer protocol, but in the future other
 protocols may be created, some of which may not even be NEATO-defined.)
 
 ### target_hostname:
 
 The second argument must be a string consisting of the hostname of the target computer, or `localhost`. If it is
-`localhost`, then the abstraction layer of the UDP protocol should add the message to the `Network` event queue of
+`localhost`, then the abstraction layer of the DPP protocol should add the message to the `Network` event queue of
 the computer that sent the message as a broadcasting function would have, so that other programs on the computer can
 receive the loopback message. If a message is received that has a `target_hostname` not equal to the hostname of this
 computer, it is against NEATO specification to read or use the payload of the message, but of course, this cannot
@@ -54,7 +54,7 @@ local listening_port = 12345
 local e = event.getFirst("Network", "networkMessage")
 local protocol, target_hostname, target_port, source_hostname = table.unpack(e) -- read the protocol, target_hostname and target_port
 
-if protocol ~= "ndp" or (target_hostname ~= hostname and target_hostname ~= "localhost") then
+if protocol ~= "dpp" or (target_hostname ~= hostname and target_hostname ~= "localhost") then
     return -- completely disregard the message if the protocol or target_hostname do not match
 end
 
@@ -71,7 +71,7 @@ if target_port ~= listening_port then
     return
 end
 
--- now you can finally use the NDP message you received!
+-- now you can finally use the DPP message you received!
 ```
 
 ### source_port
@@ -84,7 +84,7 @@ even if `target_hostname` is `localhost`.
 
 The sixth argument can be whatever the application-layer protocol requires. It can be a single value, or a table
 (either an array or a dictionary table), as long as it is defined as such by the application-layer protocol. If
-the payload is a dictionary table, then it should have a `protocol` entry with the protocol name/header for programs
-to check against, and if the payload is an array table, then its first entry should be the protocol name/header, but
+the payload is a dictionary table, then it SHOULD have a `protocol` entry with the protocol name/header for programs
+to check against, and if the payload is an array table, then its first entry SHOULD be the protocol name/header, but
 neither of these are required. It is against NEATO specification to read, access or index the payload if the target
-of the message is not you.
+of the message is not this computer and port.

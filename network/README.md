@@ -15,5 +15,5 @@ in a certain network, including the global network.
 
 ### Protocol specifications:
 
-- [NEET Datagram Protocol (ndp.md)](ndp.md) - The transport-layer protocol used as the first layer for any other
+- [Direct Payload Protocol (dpp.md)](dpp.md) - The transport-layer protocol used as the first layer for any other
   application-level protocol.
