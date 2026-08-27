@@ -11,10 +11,6 @@ program developers do not have to reinvent the wheel every time and b) programs 
 interoperate. In the future, NEATO API modules should be specified to add abstraction for each protocol so that
 developers do not have to reimplement them.
 
-In all protocol specifications, the term "broadcasting function" refers to any `io.broadcastLocal(arguments)`-equivalent
-function, including `broadcastLocal` itself. This includes any function that sends a series of arguments to all computers
-in a certain network, including the global network.
-
 ## Protocol specifications:
 
 ### Link Layer
@@ -33,7 +29,9 @@ networks will function in NEET._
 ### Transport Layer
 
 The internet layer consists of protocols for providing communication services between applications, typically by
-allowing applications to send packets to and listening for packets on ports.
+allowing applications to send packets to and listening for packets on ports. The operating system should handle
+these protocols directly, routing the packet's payload to the program that is listening on the specified port,
+and sending transport-layer packets based on the data that the program sends and the destination.
 
 - [Direct Payload Protocol (dpp.md)](dpp.md) - A connectionless transport-layer protocol comparable to the real-life
   User Datagram Protocol.
