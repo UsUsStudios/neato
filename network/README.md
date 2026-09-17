@@ -27,12 +27,15 @@ or wirelessly connected to.
 The internet layer consists of protocols for transporting network packets from the originating host to the correct
 destination, possibly across different networks.
 
+- [NEET Internet Protocol (nip.md)](nip.md) - This specification defines the primary internet-layer protocol used to
+  transport internet packets between computers across networks.
+
 ### Transport Layer
 
-The internet layer consists of protocols for providing communication services between applications, typically by
-allowing applications to send packets to and listening for packets on ports. The operating system should handle
-these protocols directly, routing the packet's payload to the program that is listening on the specified port,
-and sending transport-layer packets based on the data that the program sends and the destination.
+The layer consists of protocols for providing communication services between applications, typically by allowing
+applications to send packets to and listening for packets on ports. The operating system should handle these protocols
+directly, routing the packet's payload to the program that is listening on the specified port, and sending transport-layer
+packets based on the data that the program sends and the destination.
 
 - [Direct Payload Protocol (dpp.md)](dpp.md) - A connectionless transport-layer protocol comparable to the real-life
   User Datagram Protocol.

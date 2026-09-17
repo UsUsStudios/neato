@@ -29,13 +29,13 @@ A DPP packet should be sent as a table with the following entries:
 }
 ```
 
-### protocol:
+### protocol
 
 The value of the key `protocol` must be a string consisting of exactly `dpp`, for the receiving program to confirm that this is
 an DPP message. (Currently this is not useful, as DPP is the only transport-layer protocol, but in the future other
 protocols may be created, some of which may not even be NEATO-defined.)
 
-### target_port:
+### target_port
 
 The value of the key `target_port` must be an integer that corresponds to the port number that this message is directed at. The
 target computer's operating system facility that handles networking events should only route the payload of the
