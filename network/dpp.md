@@ -18,6 +18,10 @@ access to the payload, NIP address from which the NIP packet was sent, and the D
 system should also give the program a way of sending a DPP packet to any NIP address and port it wants, either to reply
 to a packet it received or to send an unrelated packet.
 
+This is a required part of the OS-level DPP implementation, if it exists: if a program sends a packet to the address
+`localhost`, instead of sending a full NIP packet to that address, it should simply treat the packet as a packet received
+that was targeted at this computer (a loopback).
+
 A DPP packet should be sent as a table with the following entries:
 
 ```
