@@ -3,20 +3,36 @@
 Program API environment specifications.
 
 The NEATO API consists of the default \_G, events and handlers of the provided NEET Computers API, with changes and additions
-defined by the specifications.
+defined by the specifications. Which parts a given operating system provides is determined by `core` and the extensions
+it reports, as described in the [main README](../README.md).
 
 This does not require the API to explicitly behave the same as stock NEET Computers API, or that it cannot have additions
 from an operating system, but rather that the expected parameters and return types are the same across all OSes.
 
 For example, in a GUI based operating system with applications that each get their own window, it may modify the behavior
-of the mouse event to be offset by the window's position, and the graphics API to use a specific layer for the window,
+of the terminal to draw into the application's window, and the graphics API to use a specific layer for the window,
 rather than the main global layer, and remain NEATO compliant.
 
-### Changes to the default API:
+Arguably the most important spec in the NEATO API is [globals](globals.md), as it defines the entirety of the NEATO environment for clarity, including things that might not have explicit API specs for whatever reason.
 
-_Note: get started writing specs for changes to the default API._
+### Replacements for the default API
 
-### Additions to the default API:
+NEATO does not expose the raw NEET Computers `event` and `files` APIs, because they give programs direct access to
+the "hardware" with no protection. NEATO defines its own [event](event.md) and [fs](fs.md) APIs in `core` instead, and
+an OS maps them onto whatever it has underneath. The other raw NEET APIs (`headsup`, `io`, `chip`, `internet`) are
+reserved extension names until they are abstracted.
 
-- [Terminal emulation (term.md)](term.md) - Extra functions for a standardized terminal emulator.
-- [System info (sys.md)](sys.md) - Provides system information to check for OS name, version, and NEATO compatibility.
+### `core` (always available)
+
+- [Globals (globals.md)](globals.md) - The complete global environment.
+- [Terminal emulation (term.md)](term.md) - Functions for a standardized terminal emulator.
+- [System info (sys.md)](sys.md) - OS name and version, extension queries, and sleeping.
+- [Events (event.md)](event.md) - Input and other events delivered to a program.
+- [Files (fs.md)](fs.md) - Files and directories, using the [paths](../common/paths.md) format.
+- [Current working directory (cwd.md)](cwd.md) - The directory the application was launched in.
+- [Cryptography (crypto.md)](crypto.md) - Cryptography functions.
+ 
+### Extensions
+
+- [Screen (screen.md)](screen.md) - `ext.screen`
+- [Direct Payload Protocol (../network/dpp.md)](../network/dpp.md) - `ext.dpp`

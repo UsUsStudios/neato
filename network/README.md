@@ -4,13 +4,13 @@ NEATO specifications for networking protocols.
 
 The NEATO Network module defines specifications for networking protocols between programs running on separate
 computers or possibly between programs running on a single computer. These networking protocols are, at the lowest
-abstraction layer, designed to be used with the built-in `io.broadcastLocal(arguments)` function, the Access Point
-peripheral’s `broadcast(arguments)`, and any other data transfer methods that may be used in the future. The module
-defines the protocols used in each Internet Protocol Suite layer. Programs and operating systems are welcome to
-implement their own protocols on any layer they like, but these standard protocols are designed so that a) program
-developers do not have to reinvent the wheel every time and b) programs and operating systems that use the same
-protocol can interoperate. In the future, NEATO API modules should be specified to add abstraction for each protocol
-so that developers do not have to reimplement them.
+
+abstraction layer, designed to be used with the built-in `io.broadcastLocal(arguments)` function, as well as potential
+future wireless equivalents. The module defines the protocols used in each Internet Protocol Suite layer. Programs are
+welcome to implement their own protocols on any layer they like, but these standard protocols are designed so that a)
+program developers do not have to reinvent the wheel every time and b) programs that use the same protocol can
+interoperate. Each protocol that has an API for programs to use it is a NEATO extension (for example, `ext.dpp`), so 
+an operating system that does not implement it simply does not report it.
 
 ## Protocol specifications:
 
@@ -32,13 +32,13 @@ destination, possibly across different networks.
 
 ### Transport Layer
 
-The layer consists of protocols for providing communication services between applications, typically by allowing
-applications to send packets to and listening for packets on ports. The operating system should handle these protocols
-directly, routing the packet's payload to the program that is listening on the specified port, and sending transport-layer
-packets based on the data that the program sends and the destination.
+The transport layer consists of protocols for providing communication services between applications, typically by
+allowing applications to send packets to, and listen for packets on, ports. The operating system should handle
+these protocols directly, routing the packet's payload to the program that is listening on the specified port,
+and sending transport-layer packets based on the data that the program sends and the destination.
 
 - [Direct Payload Protocol (dpp.md)](dpp.md) - A connectionless transport-layer protocol comparable to the real-life
-  User Datagram Protocol.
+  User Datagram Protocol. It is the NEATO extension `ext.dpp`.
 
 ### Application Layer
 

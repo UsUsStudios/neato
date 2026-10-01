@@ -2,7 +2,9 @@
 
 Written by SpSf
 
-Revision 2 of July 12, 2026
+Component: bootloader
+
+Version: 1
 
 ---
 
@@ -14,7 +16,7 @@ A NEATO compatible boot.lua might appear like this:
 return {
   ["Config"] = {
     ["DefaultEntry"] = 1,
-    ["Autoboot"] = "none",
+    ["Autoboot"] = false,
   },
   ["Bootlist"] = {
     {
@@ -22,15 +24,13 @@ return {
       ["OS Version"] = "0.2.4",
       ["OS Description"] = "The NeetComputers Operating System",
       ["OS Args"] = {"-v", "-f"},
-      ["OS Boot Path"] = "0:bios:/boot.lua",
+      ["OS Boot Path"] = "hd0:bios:/boot.lua",
       ["OS Environment Variable Definition"] = {
         ["EXAMPLEVAR"] = 0,
         ["VAR2"] = "Hi",
       },
     },
-    {
-      ...
-    },
+    -- additional entries follow the same format
   },
 }
 ```
@@ -40,14 +40,35 @@ return {
 NEATO compatible bootloaders must support ALL fields defined, as well as supporting multiple operating systems defined
 in `boot.lua`.
 
-The `OS Args` field must take in either a string, e.g. "EXAMPLEARG=1" or a table (as shown).
+Each entry in `Bootlist` is a table with the following fields:
+
+| Field                              | Type                | Required | Description                                                                                                                                                        |
+| ---------------------------------- | ------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| OS Name                            | string              | yes      | The name of the operating system. Displayed by the bootloader to identify the entry.                                                                               |
+| OS Version                         | string              | no       | The version of the operating system, displayed next to the name. It is recommended to use [semver](https://semver.org/) versioning.                                |
+| OS Description                     | string              | no       | A short human-readable description of the entry, displayed by the bootloader.                                                                                      |
+| OS Args                            | table of strings    | no       | The arguments passed to the boot path. If absent, no arguments are passed.                                                                                         |
+| OS Boot Path                       | string              | yes      | The full path optionally, or, the path without the disk number in the format defined in [paths.md](../common/paths.md), of the Lua file that is run to boot the entry. It should use a disk ID rather than a slot. |
+| OS Environment Variable Definition | table (string keys) | no       | The environment variables made visible to the boot path. If absent, none are defined.                                                                              |
+
+An entry that is missing a required field, or has a field of the wrong type, is invalid and must not be booted. A
+bootloader must ignore fields it does not recognize, so that entries may carry extra information for the operating
+system itself.
+
+When an entry is booted, the bootloader runs the file at `OS Boot Path`, passing `OS Args` as its arguments and
+defining `OS Environment Variable Definition` in its environment, as described below.
+
+The `OS Args` field is a table of strings, as shown. A single argument is written as a table with one element, for
+example `{"EXAMPLEARG=1"}`.
 
 Arguments must be passed into the boot path as provided, so a table must pass into the boot path as ("-v", "-f") for
-example, or as a raw string.
+example.
 
-The `OS Environment Variable Definition` field must create environment variables for the boot path, as provided. This
-can be done different ways, but the boot path MUST be able to see defined varaibles in \_ENV. So, for the provided example,
-`0:bios:/boot.lua` would be able to see `_ENV.EXAMPLEVAR` as `0`, and `VAR2` as "Hi".
+The `OS Environment Variable Definition` field must create environment variables for the boot path, as provided. The
+variables are fields of a global table named `ENV`, so that a variable can never replace a function or library that the
+boot path relies on. For the provided example, `hd0:bios:/boot.lua` would be able to see `ENV.EXAMPLEVAR` as `0`, and
+`ENV.VAR2` as `"Hi"`. Values must keep the type they were defined with, and bootloaders must support at least strings
+and numbers.
 
 ---
 
@@ -58,6 +79,6 @@ NEATO compatible bootloaders must respect the Config field.
 `Config.DefaultEntry` is 1-indexed as how Lua tables are indexed. `Config.DefaultEntry` controls which boot entry is first
 shown and selected initially when the bootloader is opened.
 
-`Config.Autoboot` is 1-indexed as how Lua tables are indexed. `Config.Autoboot` if set to `"none"` or any value other
-than a valid index into `Bootlist` disables autoboot. If set to an index of `Bootlist` then automatically boots into
-it. NEATO does not define how long it must take, if any time, for `Config.Autoboot` to complete or confirm.
+`Config.Autoboot` is 1-indexed as how Lua tables are indexed. `Config.Autoboot` if set to `false`, or any other value
+that is not a valid index into `Bootlist`, disables autoboot. If set to an index of `Bootlist` then automatically boots
+into it. NEATO does not define how long it must take, if any time, for `Config.Autoboot` to complete or confirm.
