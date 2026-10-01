@@ -6,7 +6,7 @@ Extension: `ext.dpp`
 
 Version: 1
 
-Requires: `core`
+Requires: `core`, `ext.nip`
 
 ---
 

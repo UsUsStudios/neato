@@ -9,7 +9,7 @@ abstraction layer, designed to be used with the built-in `io.broadcastLocal(argu
 future wireless equivalents. The module defines the protocols used in each Internet Protocol Suite layer. Programs are
 welcome to implement their own protocols on any layer they like, but these standard protocols are designed so that a)
 program developers do not have to reinvent the wheel every time and b) programs that use the same protocol can
-interoperate. Each protocol that has an API for programs to use it is a NEATO extension (for example, `ext.dpp`), so 
+interoperate. Each protocol that has an API for programs to use it is a NEATO extension (for example, `ext.dpp`), so
 an operating system that does not implement it simply does not report it.
 
 ## Protocol specifications:
@@ -20,7 +20,8 @@ The link layer consists of protocols for sending packets directly between comput
 or wirelessly connected to.
 
 - [Local Communication Link and Wireless Communication Link (lcl-wcl.md)](lcl-wcl.md) - The two link-layer data transfer
-  primitives, using `io.broadcastLocal(arguments)` and `access_point.broadcast(arguments)` respectively.
+  primitives, using `io.broadcastLocal(arguments)` and `access_point.broadcast(arguments)` respectively. It is under the
+  NEATO extension `ext.nip`.
 
 ### Internet Layer
 
@@ -28,7 +29,7 @@ The internet layer consists of protocols for transporting network packets from t
 destination, possibly across different networks.
 
 - [NEET Internet Protocol (nip.md)](nip.md) - This specification defines the primary internet-layer protocol used to
-  transport internet packets between computers across networks.
+  transport internet packets between computers across networks. It is under the NEATO extension `ext.nip`.
 
 ### Transport Layer
 

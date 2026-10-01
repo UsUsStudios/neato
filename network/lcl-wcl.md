@@ -2,7 +2,11 @@
 
 Written by UsUsStudios
 
-Revision 1 of September 14, 2026
+Extension: `ext.nip`
+
+Version: 1
+
+Requires: `core`
 
 ---
 
