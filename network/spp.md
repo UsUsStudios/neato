@@ -71,7 +71,7 @@ closed or the program ends.
 
 ### Scope
 
-A *scope* says which computers are involved. There are two:
+A _scope_ says which computers are involved. There are two:
 
 | Scope       | Meaning                                                                                    |
 | ----------- | ------------------------------------------------------------------------------------------ |
@@ -111,8 +111,8 @@ change afterwards. Both ends have one, describing the other end.
   define what a user is, so a program must treat the string as opaque and only compare it for equality. It is `nil` if
   the operating system has no user accounts, and it is always `nil` for a remote peer, because another computer's
   accounts cannot be checked. A program that makes a decision based on `user` must treat `nil` as "not allowed".
-- An extension may add fields to `peer`. [`ext.sppRemote`](spp-remote.md) adds `medium` and `distance`, or, with [`ext.rpp`](rpp.md), `host`. A program must
-  ignore fields it does not know.
+- An extension may add fields to `peer`. [`ext.sppRemote`](spp-remote.md) adds `medium` and `distance`, or, with [`ext.
+rpp`](rpp.md), `host`. A program must ignore fields it does not know.
 - `id` identifies the peer program on this computer while it is running (an operating system with process IDs would
   use those). It means nothing on another computer and may be reused after the peer ends. It is `nil` if the operating
   system has none, and always `nil` for a remote peer.
@@ -126,12 +126,11 @@ closes the connection if it does not like what it sees.
 
 A message is a payload: a boolean, a number, a string, or a table whose keys and values are payloads. Tables may be
 nested at most 32 levels deep and must not refer to themselves, and `nan` cannot be a key or a value. Functions, threads
-and userdata cannot be sent, and metatables are not sent. These are the same rules as the [payload
-encoding](wire.md#payload-encoding) that connections between computers use, so a program that works over a local
-connection sends exactly the payloads that work over a network one, and an operating system that reports `ext.spp`
-without `ext.dpp` does not depend on DPP to know what a payload is. The operating system copies the payload when it is
-sent, so the sender and the receiver never share a table. A table that is referred to twice inside one payload arrives
-as two separate copies.
+and userdata cannot be sent, and metatables are not sent. These are the same rules as the [payload encoding](wire.md#
+payload-encoding) that connections between computers use, so a program that works over a local connection sends exactly
+the payloads that work over a network one, and an operating system that reports `ext.spp` without `ext.dpp` does not
+depend on DPP to know what a payload is. The operating system copies the payload when it is sent, so the sender and
+the receiver never share a table. A table that is referred to twice inside one payload arrives as two separate copies.
 
 Within one connection every message that is sent is received exactly once and in the order it was sent, for as long
 as the connection is not `reset`. There is no loss, duplication or reordering to handle. A single payload has a size
@@ -149,10 +148,10 @@ waits (yields) until there is room or its timeout passes. Messages are never dro
 reads them and then gets `EPIPE` from `conn:recv`. Messages that were waiting in the closing program's own inbox are
 discarded. `EPIPE` is also what `conn:send` returns when the peer has closed.
 
-A connection can also end badly, which is called a reset (its code is `ECONNRESET`): the peer program was killed in a way that stopped it from
-closing, the operating system had to drop the connection (for example, a resource limit), or, with `ext.sppRemote`,
-the remote computer stopped answering. Messages that were not yet delivered may be lost. Every later call on that
-connection returns `ECONNRESET`.
+A connection can also end badly, which is called a reset (its code is `ECONNRESET`): the peer program was killed in a
+way that stopped it from closing, the operating system had to drop the connection (for example, a resource limit), or,
+with `ext.sppRemote`, the remote computer stopped answering. Messages that were not yet delivered may be lost. Every
+later call on that connection returns `ECONNRESET`.
 
 `listener:close()` releases the port. Connections that were waiting to be accepted are reset, and connections that were
 already accepted are not affected.
