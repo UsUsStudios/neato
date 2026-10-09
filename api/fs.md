@@ -163,8 +163,7 @@ returns whichever one it actually uses.
 | `system.bin`                  | `/bin`, `/usr/bin`   | Commands used by users.                                                              |
 | `system.sbin`                 | `/sbin`, `/usr/sbin` | Commands for system administration.                                                  |
 | `system.libraries`            | `/lib`, `/usr/lib`   | Shared libraries and loadable modules.                                               |
-| `system.include`              | `/usr/include`       | Header files for compiled programs.                                                  |
-| `system.source`               | `/usr/src`           | Source code.                                                                         |
+| `system.source`               | `/usr/src`           | Program source code.                                                                 |
 | `system.config`               | `/etc`               | Host-specific system configuration.                                                  |
 | `system.boot`                 | `/boot`              | Files needed before the operating system starts, such as a kernel or boot loader.    |
 | `system.device`               | `/dev`               | Device files.                                                                        |
