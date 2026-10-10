@@ -10,7 +10,7 @@ This file is a general specification of the entire global environment that a NEA
 receive. Some APIs might only be defined here and nowhere else, as they might be really close to either default NEET or
 Lua functions. Otherwise, the relevant API spec will be referenced in a comment (`// like this`).
 
-*Note: since NEATO is still in development, this page will definitely receive a lot of changes in the future*
+_Note: since NEATO is still in development, this page will definitely receive a lot of changes in the future_
 
 The environment is what `core` provides plus, for every extension the operating system reports through
 `sys.getExtensions`, the globals that extension defines. An environment must not contain a global that belongs to an
@@ -28,6 +28,9 @@ codes its functions must use.
 ```c
 // Defined in api/cwd.md
 CWD
+
+// Defined in api/requestNeato.md
+requestNeato
 
 // Defined in api/sys.md
 sys

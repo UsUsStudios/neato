@@ -25,6 +25,7 @@ reserved extension names until they are abstracted.
 ### `core` (always available)
 
 - [Globals (globals.md)](globals.md) - The complete global environment.
+- [NEATO requesting (requestNeato.md)](globals.md) - The function for requesting that the environment be changed to a fully NEATO compliant one.
 - [Terminal emulation (term.md)](term.md) - Functions for a standardized terminal emulator.
 - [System info (sys.md)](sys.md) - OS name and version, extension queries, and sleeping.
 - [Events (event.md)](event.md) - Input and other events delivered to a program.
@@ -32,7 +33,7 @@ reserved extension names until they are abstracted.
 - [Current working directory (cwd.md)](cwd.md) - The directory the application was launched in.
 - [Cryptography (crypto.md)](crypto.md) - Cryptography functions.
 - [Error codes (../common/errors.md)](../common/errors.md) - The shared codes every failing API returns.
- 
+
 ### Extensions
 
 - [Screen (screen.md)](screen.md) - `ext.screen`
