@@ -32,6 +32,9 @@ CWD
 // Defined in api/requestNeato.md
 requestNeato
 
+// Defined in api/loadfile.md
+loadfile
+
 // Defined in api/sys.md
 sys
   getOSName
