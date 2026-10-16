@@ -32,8 +32,17 @@ CWD
 // Defined in api/requestNeato.md
 requestNeato
 
-// Defined in api/loadfile.md
+// defined in api/loadfile.md
 loadfile
+
+// defined in api/package-require.md
+require
+package
+  config
+  loaded
+  path
+  searchers
+  searchpath
 
 // Defined in api/sys.md
 sys
@@ -92,16 +101,16 @@ A NEATO program is a Lua chunk that the operating system loads and runs in the e
 `core` defines how the program is launched and how it ends.
 
 - **Arguments.** The chunk receives the program's arguments as its vararg expression `...`, one string per argument,
-in the order they were given. The program's own name is not included.
+  in the order they were given. The program's own name is not included.
 - **Exit status.** When the chunk returns, its first result is the program's exit status: an integer from 0 to 255
-that the operating system may report onward, for example to a shell. Any other result, including no result at all,
-is a status of 0, and an integer outside the range is taken modulo 256. A status of 0 means success and any other
-status means the program chose to report a failure.
+  that the operating system may report onward, for example to a shell. Any other result, including no result at all,
+  is a status of 0, and an integer outside the range is taken modulo 256. A status of 0 means success and any other
+  status means the program chose to report a failure.
 - **Uncaught errors.** An error that is not caught ends the program with a nonzero status of the operating system's
-choice. If [`ext.stdio`](stdio.md) is reported, the operating system may write a diagnostic to `stdio.stderr`.
+  choice. If [`ext.stdio`](stdio.md) is reported, the operating system may write a diagnostic to `stdio.stderr`.
 - **Termination.** The `terminate` event (see [event.md](event.md)) asks the program to stop. The operating system
-must deliver the event first and let the program react; a program that keeps running may afterwards be ended by the
-operating system, and its status is then an OS-defined value of at least 128.
+  must deliver the event first and let the program react; a program that keeps running may afterwards be ended by the
+  operating system, and its status is then an OS-defined value of at least 128.
 
 ### Extension globals
 
