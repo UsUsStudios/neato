@@ -26,6 +26,9 @@ reserved extension names until they are abstracted.
 
 - [Globals (globals.md)](globals.md) - The complete global environment, including the program model: the arguments a
   program receives and the exit status it returns.
+- [NEATO requesting (requestNeato.md)](requestNeato.md) - The function for requesting that the environment be changed to a fully NEATO compliant one.
+- [Loadfile (loadfile.md)](loadfile.md) - A function for loading a lua file as a function, as in base Lua.
+- [Package and require (package-require.md)](package-require.md) - The `require` function and global `package` table, as in base Lua.
 - [Terminal emulation (term.md)](term.md) - Functions for a standardized terminal emulator.
 - [System info (sys.md)](sys.md) - OS name and version, extension queries, and sleeping.
 - [Events (event.md)](event.md) - Input and other events delivered to a program.

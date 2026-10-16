@@ -61,8 +61,7 @@ breaking change. Anything that an OS could reasonably decline to implement is ne
 becomes a new extension instead. An OS implements exactly one version of each extension it reports, and a program
 should check for the exact version it was written for. There is no version for NEATO as a whole.
 
-An extension may require other extensions. An OS that reports an extension must also report
-everything it requires.
+An extension may require other extensions. An OS that reports an extension must also report everything it requires.
 
 Names in the `ext.` namespace that are reserved have no specification yet (see [Reserved](#reserved)), and names of
 draft extensions (see [Drafts](#drafts)) have one that is not final. An OS must not report either as supported. This
