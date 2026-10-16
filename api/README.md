@@ -24,7 +24,8 @@ reserved extension names until they are abstracted.
 
 ### `core` (always available)
 
-- [Globals (globals.md)](globals.md) - The complete global environment.
+- [Globals (globals.md)](globals.md) - The complete global environment, including the program model: the arguments a
+  program receives and the exit status it returns.
 - [NEATO requesting (requestNeato.md)](requestNeato.md) - The function for requesting that the environment be changed to a fully NEATO compliant one.
 - [Loadfile (loadfile.md)](loadfile.md) - A function for loading a lua file as a function, as in base Lua.
 - [Package and require (package-require.md)](package-require.md) - The `require` function and global `package` table, as in base Lua.
@@ -38,7 +39,24 @@ reserved extension names until they are abstracted.
 
 ### Extensions
 
+- [Standard streams (stdio.md)](stdio.md) - `ext.stdio`
+- [Environment (env.md)](env.md) - `ext.env`
+- [Time (time.md)](time.md) - `ext.time`
+- [Processes (proc.md)](proc.md) - `ext.proc`
+- [Users (user.md)](user.md) - `ext.user`
+- [System (system.md)](system.md) - `ext.system`
+- [Permissions (perms.md)](perms.md) - `ext.perms`
 - [Screen (screen.md)](screen.md) - `ext.screen`
 - [Direct Payload Protocol (../network/dpp.md)](../network/dpp.md) - `ext.dpp`
 - [Sequenced Payload Protocol (../network/spp.md)](../network/spp.md) - `ext.spp`
-- [Routed Packet Protocol (../network/rpp.md)](../network/rpp.md) - `ext.rpp`
+- [Routed Packet Protocol (../network/rpp.md)](../network/rpp.md) - `ext.rpp` (draft)
+
+### Extensions that extend `fs`
+
+Some extensions define no global table of their own and add functions to the [`fs`](fs.md) API instead. An
+operating system defines those functions exactly when it reports the extension, so `sys.hasExtension` and a check
+for `nil` both work.
+
+- [Permissions (perms.md)](perms.md) - `ext.perms`, adds `fs.access`, `fs.chmod`, `fs.chown`, `fs.umask`.
+- [Symbolic links (symlink.md)](symlink.md) - `ext.symlink` (draft), adds `fs.symlink`, `fs.readlink`.
+- [Filesystem usage (statfs.md)](statfs.md) - `ext.statfs` (draft), adds `fs.statfs`.
