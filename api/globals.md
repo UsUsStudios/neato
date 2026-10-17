@@ -190,18 +190,6 @@ rpp
 The extensions [`ext.perms`](perms.md), [`ext.symlink`](symlink.md) and [`ext.statfs`](statfs.md) define no global
 table of their own: they add functions to the `fs` API instead, as [fs.md](fs.md) describes.
 
-### Reserved core names (not yet specified)
-
-`require` and `loadfile` are moved from the default Lua environment and are still to be defined, and `requestNeato` is
-also still to be defined. Until they are, an environment must not define these names as anything other than what a
-future specification says.
-
-```c
-require
-loadfile
-requestNeato
-```
-
 ### Default Lua global variables (mostly unchanged)
 
 Some things have been moved (require, loadfile, print) due to the change in functionality, or because NEET doesn't include them, but most of these should be OK as they are basically just backend things that don't interact with the "hardware" of the computer.
