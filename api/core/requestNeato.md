@@ -11,5 +11,5 @@ function under the name `_G.requestNeato`. This function is used for non-NEATO c
 to request the environment be changed into a compatibility layer, which makes the environment officially considered
 NEATO compliant. An environment that is NEATO compliant out-of-the-box still must define `_G.requestNeato`, but
 it can simply be a NOP function. After calling this function, a program should be certain that its global environment
-matches that which is defined in the [API spec](../README.md), the [\_G spec](globals.md), and the NEATO API module as a
+matches that which is defined in the [API spec](../README.md), the [\_G spec](../globals.md), and the NEATO API module as a
 whole.
