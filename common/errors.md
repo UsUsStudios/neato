@@ -20,7 +20,7 @@ word however it likes.
 
 A function that returns `false`, or `nil` without a code, as an ordinary answer is not failing and does not use a code.
 For example, `fs.exists` answers `false` when nothing is there, `event.poll` answers `nil` when the queue is empty, and
-[`fs.getPoint`](../api/fs.md#filesystem-points) answers `nil` for a point the operating system does not provide. A
+[`fs.getPoint`](../api/core/fs.md#filesystem-points) answers `nil` for a point the operating system does not provide. A
 program tells a failure from such an answer by the code: a failure is exactly a `nil` first result that is followed by a
 code.
 

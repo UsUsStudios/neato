@@ -23,7 +23,7 @@ An event is a name (a string) followed by zero or more values.
 | event.clear | Removes every event from this program's queue.                                                                                                                                                                                     | none                                | nil                              |
 
 `event.push` fails with `ENOBUFS` when the queue is full, returning `nil`, then the code, then a message, as defined in
-[errors.md](../common/errors.md). `event.pull` and `event.poll` returning `nil` is an ordinary answer, not a failure.
+[errors.md](../../common/errors.md). `event.pull` and `event.poll` returning `nil` is an ordinary answer, not a failure.
 
 ---
 

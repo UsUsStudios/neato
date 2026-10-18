@@ -39,7 +39,7 @@ The partition name cannot contain `:` or `/`.
 A path given to a NEATO function does not have to be a full path. If it does not have the two `:` separators of a full
 path, it is instead:
 
-- a path starting with `/`, which is a path on the disk and partition of [`CWD`](../api/cwd.md), or
+- a path starting with `/`, which is a path on the disk and partition of [`CWD`](../api/core/cwd.md), or
 - any other path, which is relative to `CWD`.
 
 Both are turned into a full path by `fs.resolve`, and a path must never contain `:` unless it is a full path.

@@ -16,26 +16,26 @@ The environment is what `core` provides plus, for every extension the operating 
 `sys.getExtensions`, the globals that extension defines. An environment must not contain a global that belongs to an
 extension it does not report. This applies to the raw NEET Computers APIs as well: `files`, `headsup`, `io`, `chip`
 and `internet` are not part of a NEATO environment. Their names are only available through the extensions that will
-replace them (the reserved names in the [main README](../README.md)). The name `event` is used by NEATO, but it is the
+replace them (the reserved names in the [main README](../../README.md)). The name `event` is used by NEATO, but it is the
 NEATO [event](event.md) API and not the NEET Computers one.
 
 A global function that can fail reports the failure as `nil`, an error code, then a message, as defined in
-[errors.md](../common/errors.md). A wrong argument type raises an error instead. Each API specification lists the exact
+[errors.md](../../common/errors.md). A wrong argument type raises an error instead. Each API specification lists the exact
 codes its functions must use.
 
 ### NEATO `core` globals
 
 ```c
-// Defined in api/cwd.md
+// Defined in api/core/cwd.md
 CWD
 
-// Defined in api/requestNeato.md
+// Defined in api/core/requestNeato.md
 requestNeato
 
-// defined in api/loadfile.md
+// defined in api/core/loadfile.md
 loadfile
 
-// defined in api/package-require.md
+// defined in api/core/package-require.md
 require
 package
   config
@@ -44,7 +44,7 @@ package
   searchers
   searchpath
 
-// Defined in api/sys.md
+// Defined in api/core/sys.md
 sys
   getOSName
   getOSVersion
@@ -52,14 +52,14 @@ sys
   hasExtension
   sleep
 
-// Defined in api/event.md
+// Defined in api/core/event.md
 event
   pull
   poll
   push
   clear
 
-// Defined in api/fs.md
+// Defined in api/core/fs.md
 fs
   exists
   isFile
@@ -76,10 +76,10 @@ fs
   getPoint
   getPoints
 
-// Defined in api/crypto.md
+// Defined in api/core/crypto.md
 crypto
 
-// Defined in api/term.md
+// Defined in api/core/term.md
 term
   clear
   write
@@ -107,7 +107,7 @@ A NEATO program is a Lua chunk that the operating system loads and runs in the e
   is a status of 0, and an integer outside the range is taken modulo 256. A status of 0 means success and any other
   status means the program chose to report a failure.
 - **Uncaught errors.** An error that is not caught ends the program with a nonzero status of the operating system's
-  choice. If [`ext.stdio`](stdio.md) is reported, the operating system may write a diagnostic to `stdio.stderr`.
+  choice. If [`ext.stdio`](../stdio.md) is reported, the operating system may write a diagnostic to `stdio.stderr`.
 - **Termination.** The `terminate` event (see [event.md](event.md)) asks the program to stop. The operating system
   must deliver the event first and let the program react; a program that keeps running may afterwards be ended by the
   operating system, and its status is then an OS-defined value of at least 128.
@@ -187,7 +187,7 @@ rpp
   ping
 ```
 
-The extensions [`ext.perms`](perms.md), [`ext.symlink`](symlink.md) and [`ext.statfs`](statfs.md) define no global
+The extensions [`ext.perms`](../perms.md), [`ext.symlink`](../symlink.md) and [`ext.statfs`](../statfs.md) define no global
 table of their own: they add functions to the `fs` API instead, as [fs.md](fs.md) describes.
 
 ### Default Lua global variables (mostly unchanged)

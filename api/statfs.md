@@ -10,12 +10,12 @@ Status: draft. An OS must not report `ext.statfs` until this notice is removed.
 
 ---
 
-A NEATO compliant operating system that reports this extension must provide one function in its [`fs`](fs.md)
+A NEATO compliant operating system that reports this extension must provide one function in its [`fs`](core/fs.md)
 API, `fs.statfs`, which answers how full the filesystem holding a path is. It is what the `df` core utility is
 written from.
 
 This extension adds one function to the `fs` API. An operating system defines it exactly when it reports this
-extension, as [fs.md](fs.md) describes.
+extension, as [fs.md](core/fs.md) describes.
 
 | Name      | Description                                                     | Arguments       | Returns                                     |
 | --------- | --------------------------------------------------------------- | --------------- | ------------------------------------------- |
@@ -63,5 +63,5 @@ end
 ### Footnotes
 
 The draft notice comes off when a second operating system has implemented the fields. There are deliberately no
-per-file block counts (the `du` question): a program answers that from [`fs.stat`](fs.md#file-information) sizes,
+per-file block counts (the `du` question): a program answers that from [`fs.stat`](core/fs.md#file-information) sizes,
 which overestimate on filesystems that pad, and that is accepted for now.

@@ -26,12 +26,12 @@ usual way, with three groups of `rwx`:
 
 Who the owner is: every object with permission bits has an owning user, by id, and an owning group, by id, as
 [`ext.user`](user.md) defines users and groups. An object may carry no bits at all, in which case
-[`fs.stat`](fs.md#file-information) reports no `mode`, `uid` or `gid` fields and this extension's functions answer
+[`fs.stat`](core/fs.md#file-information) reports no `mode`, `uid` or `gid` fields and this extension's functions answer
 as if the object were fully accessible.
 
 This extension adds four functions to the `fs` API. An operating system defines them exactly when it reports this
-extension, as [fs.md](fs.md) describes, and a program tests for them with
-[`sys.hasExtension("ext.perms")`](sys.md).
+extension, as [fs.md](core/fs.md) describes, and a program tests for them with
+[`sys.hasExtension("ext.perms")`](core/sys.md).
 
 | Name      | Description                                                                                  | Arguments                              | Returns                            |
 | --------- | -------------------------------------------------------------------------------------------- | -------------------------------------- | ---------------------------------- |
@@ -43,7 +43,7 @@ extension, as [fs.md](fs.md) describes, and a program tests for them with
 `fs.access(path, ways)` answers one question: may this program, right now, use this path in all of the ways named?
 `ways` is a string of the letters `r`, `w` and `x`, with the meanings of the table above, such as `"r"` or `"rw"`;
 an empty string asks only that the path can be reached at all. It answers `false` when the path does not exist or
-the program may not, and it never fails: it is a question, like [`fs.exists`](fs.md), not an operation.
+the program may not, and it never fails: it is a question, like [`fs.exists`](core/fs.md), not an operation.
 
 `fs.chmod(path, mode)` sets the bits of the object at the path to exactly `mode`, an integer from 0 to 511. A
 program may chmod an object it owns, an administrator may chmod anything, and the operating system decides for its
@@ -58,11 +58,11 @@ fails with `EACCES` or `ENOTSUP`, as above.
 `fs.umask` returns the calling program's umask, and sets it first when `mask` is given. The umask holds the bits
 that are removed from the `mode` of every file and directory this program creates, whatever mode the creation would
 otherwise give it: a program with umask `0o022` that creates a file that would be `0o666` gets `0o644`, and one
-that would be `0o777` gets `0o755`. It applies to [`fs.open`](fs.md#opening-files) in the writing modes and to
-[`fs.makeDir`](fs.md), and a child program starts with a copy of its parent's umask. Every program has a umask from
+that would be `0o777` gets `0o755`. It applies to [`fs.open`](core/fs.md#opening-files) in the writing modes and to
+[`fs.makeDir`](core/fs.md), and a child program starts with a copy of its parent's umask. Every program has a umask from
 the moment it starts; the operating system chooses the first one.
 
-An operating system enforces the bits on every [`fs`](fs.md) operation and on [`proc.spawn`](proc.md), and decides
+An operating system enforces the bits on every [`fs`](core/fs.md) operation and on [`proc.spawn`](proc.md), and decides
 for itself what an administrator may override; the table above says what each bit promises, not who may hold it.
 
 ---
@@ -110,6 +110,6 @@ fs.umask(tonumber("077", 8))
 ### Footnotes
 
 Only the nine bits of the table are defined. Setuid, sticky and the rest of the Unix bits are deliberately left
-out: an operating system may store them, but no program can rely on them, and [`fs.stat`](fs.md#file-information)
+out: an operating system may store them, but no program can rely on them, and [`fs.stat`](core/fs.md#file-information)
 must not report them through `mode`. The `x` bit on a file is a request to the operating system to treat the file
 as a program, which is why [`proc.spawn`](proc.md) refuses a file without it with `EACCES`.

@@ -40,6 +40,8 @@ There are three kinds of name:
 | `ext.<name>`        | A standard extension, defined by a specification in this repository. Example: `ext.screen`. |
 | `x.<vendor>.<name>` | A non-standard extension defined by an OS or a third party. Example: `x.neetos.windows`.    |
 
+For contributions regarding non-standard extensions, 
+
 Names are case sensitive and every segment consists only of letters and digits.
 
 Querying. A program finds out what it is running on with the `sys` API (see [sys.md](api/sys.md)):

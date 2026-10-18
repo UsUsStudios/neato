@@ -11,12 +11,12 @@ Status: draft. An OS must not report `ext.symlink` until this notice is removed.
 ---
 
 A NEATO compliant operating system that reports this extension must provide symbolic links in its
-[`fs`](fs.md) filesystem: a link is a small object that names another path, and every path in every `fs` function
+[`fs`](core/fs.md) filesystem: a link is a small object that names another path, and every path in every `fs` function
 goes through it to whatever it names. Links are what let one name follow another when the target moves, and let a
 package present its files under several points.
 
 This extension adds two functions to the `fs` API. An operating system defines them exactly when it reports this
-extension, as [fs.md](fs.md) describes.
+extension, as [fs.md](core/fs.md) describes.
 
 | Name       | Description                                                                       | Arguments                          | Returns                                    |
 | ---------- | --------------------------------------------------------------------------------- | ---------------------------------- | ------------------------------------------ |
@@ -33,9 +33,9 @@ something is already at `linkPath`.
 nothing that exists at the path fails with `ENOENT`.
 
 Links are followed transparently. Every `fs` function that takes a path resolves the links it meets on the way,
-and the object a path names is whatever its final link names: [`fs.stat`](fs.md#file-information) reports
-`"link"` as the `type` only for the link itself, [`fs.open`](fs.md#opening-files) on a link opens what it points
-to, and [`fs.delete`](fs.md) on a link removes the link and leaves the target alone. A path that runs through more
+and the object a path names is whatever its final link names: [`fs.stat`](core/fs.md#file-information) reports
+`"link"` as the `type` only for the link itself, [`fs.open`](core/fs.md#opening-files) on a link opens what it points
+to, and [`fs.delete`](core/fs.md) on a link removes the link and leaves the target alone. A path that runs through more
 links than the operating system allows, or through a ring of links, cannot be resolved and fails with `EIO`.
 
 An operating system that reports this extension reports it for its whole `fs` filesystem. Where the underlying
@@ -80,5 +80,5 @@ print(fs.isFile("0:system:/usr/bin/sh"))
 
 The draft notice comes off when the resolution rules have survived an implementation or two. In particular these
 are still open: whether a dedicated code replaces `EIO` for rings of links, whether links may point across
-partitions, and whether [`fs.stat`](fs.md#file-information) gains a field for the target of the final link. There
+partitions, and whether [`fs.stat`](core/fs.md#file-information) gains a field for the target of the final link. There
 is deliberately no function that changes a link's target in place; use `fs.delete` and `fs.symlink`.

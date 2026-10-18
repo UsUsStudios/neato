@@ -11,7 +11,7 @@ Computers API. These functions only compute on data and do not touch the "hardwa
 need any protection layer.
 
 `crypto` keeps the NEET Computers API unchanged, including how it reports its own failures, so it is the one part of
-`core` that does not use the codes in [errors.md](../common/errors.md).
+`core` that does not use the codes in [errors.md](../../common/errors.md).
 
 ```c
 crypto

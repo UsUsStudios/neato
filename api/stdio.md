@@ -14,7 +14,7 @@ makes a program usable as a filter and as a step in a pipeline: a program reads 
 without caring whether it was given a terminal, a file or another program's output, and writes its result to
 standard output the same way.
 
-The streams are handles with the same five methods, called with `:`, as the handles [`fs.open`](fs.md#opening-files)
+The streams are handles with the same five methods, called with `:`, as the handles [`fs.open`](core/fs.md#opening-files)
 returns, and they follow the same rules: a wrong argument type raises an error, calling a method on a closed stream
 raises an error, and a refusal returns `nil`, then a code from [errors.md](../common/errors.md), then a message.
 
@@ -38,7 +38,7 @@ system closes whatever is still open when the program ends, exactly as it does f
 ### Reading and writing
 
 `stdio.stdin` is open for reading and `stdio.stdout` and `stdio.stderr` for writing, and the rules of
-[fs.md](fs.md#opening-files) apply: reading from an output stream or writing to the input stream fails with `EBADF`.
+[fs.md](core/fs.md#opening-files) apply: reading from an output stream or writing to the input stream fails with `EBADF`.
 
 Reading from a stream that is connected to a terminal reads what the user types. The operating system chooses the
 editing keys and the gesture that means end of file (for example, an empty line entered with a particular key).
@@ -65,7 +65,7 @@ and a program that needs the error writes through `stdio.stdout` itself and hand
 
 When this extension is reported, `print` writes its converted arguments, separated by tab characters and followed
 by a newline, to `stdio.stdout`. When `stdio.isatty(stdio.stdout)` is `true`, it does so with the full terminal
-behavior [term.md](term.md) defines: wrapping at the edge, scrolling, the current colors. When it is `false`, the
+behavior [term.md](core/term.md) defines: wrapping at the edge, scrolling, the current colors. When it is `false`, the
 same characters are written as plain bytes, with no wrapping, no scrolling and no screen. The rules about a failed
 write to `stdio.stdout` above apply.
 

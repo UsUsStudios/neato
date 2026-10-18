@@ -11,7 +11,7 @@ Requires: `core`
 A NEATO compliant operating system that reports this extension must provide a global `system` API with the few
 facts about the computer itself that programs such as `hostname`, `uname` and `uptime` are written from. The
 operating system's name and version are already covered by [`sys.getOSName` and
-`sys.getOSVersion`](sys.md); this extension covers the computer those programs run on.
+`sys.getOSVersion`](core/sys.md); this extension covers the computer those programs run on.
 
 | Name               | Description                                                                                     | Arguments       | Returns                            |
 | ------------------ | ----------------------------------------------------------------------------------------------- | --------------- | ---------------------------------- |

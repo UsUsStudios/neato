@@ -53,7 +53,7 @@ ignored; an operating system may accept additional fields of its own under names
 
 | Field     | Type            | Meaning                                                                                                                        |
 | --------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `cwd`     | string          | The child's [`CWD`](cwd.md). It must be an existing directory when the child starts. The default is this program's `CWD`.        |
+| `cwd`     | string          | The child's [`CWD`](core/cwd.md). It must be an existing directory when the child starts. The default is this program's `CWD`.        |
 | `env`     | table           | The child's environment, from name to value. It replaces the inherited one entirely. The default is a copy of this program's environment. |
 | `stdin`   | handle          | The child's standard input. Must be open for reading. The default is this program's standard input.                             |
 | `stdout`  | handle          | The child's standard output. Must be open for writing. The default is this program's standard output.                           |
@@ -95,7 +95,7 @@ the same parent, which is how a pipeline is built.
 `proc.wait` blocks until one of this program's children has finished, and then returns that child's pid and its
 exit status as defined by [globals.md](globals.md#the-program). With no pid, any finished child is returned; with a
 pid, that child is. Events that arrive while waiting stay in the event queue, as with
-[`sys.sleep`](sys.md).
+[`sys.sleep`](core/sys.md).
 
 `proc.poll` does the same without waiting: it returns the pid and status of a finished child, or `nil` when every
 child is still running. `nil` with no code is an ordinary answer, not a failure.

@@ -7,7 +7,7 @@ Version: 3
 ---
 
 A NEATO compliant environment must provide the current working directory as a path to the application via `_G.CWD`.
-The path must be a full path in the format defined in [paths.md](../common/paths.md), must name an existing directory,
+The path must be a full path in the format defined in [paths.md](../../common/paths.md), must name an existing directory,
 must end in `/`, and must not use `any` as its disk.
 
 `CWD` is decided when the application is launched, and does not change while it runs. The operating system that
